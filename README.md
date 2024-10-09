@@ -17,7 +17,8 @@ cd openai-assistants-quickstart
 ### 2. Set your [OpenAI API key](https://platform.openai.com/api-keys)
 
 ```shell
-export OPENAI_API_KEY="sk_..."
+export const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
+
 ```
 
 (or in `.env.example` and rename it to `.env`).

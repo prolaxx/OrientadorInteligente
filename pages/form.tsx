@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import 'animate.css';
 import anime from 'animejs';
 import styles from './form.module.css';
 
 const UserForm = () => {
+  const router = useRouter();
+  
   const [formData, setFormData] = useState<{
     name: string;
     email: string;
@@ -14,7 +17,7 @@ const UserForm = () => {
     postalCode: string;
     educationPreference: string;
     willingToRelocate: string;
-    favoriteClasses: string[];  // Especifica que es un array de strings
+    favoriteClasses: string[];
     toolSkill: string;
     physicalTaskComfort: string;
     mechanicalSkill: string;
@@ -90,7 +93,7 @@ const UserForm = () => {
     materialSuccessValue: string;
     authorityPreference: string;
     ambitionPursuit: string;
-    decisionMaking: string;  // Agregada la propiedad que faltaba
+    decisionMaking: string;
   }>({
     name: '',
     email: '',
@@ -101,7 +104,7 @@ const UserForm = () => {
     postalCode: '',
     educationPreference: '',
     willingToRelocate: '',
-    favoriteClasses: [],  // Inicializa como un array vacío de strings
+    favoriteClasses: [],
     toolSkill: '',
     physicalTaskComfort: '',
     mechanicalSkill: '',
@@ -177,9 +180,8 @@ const UserForm = () => {
     materialSuccessValue: '',
     authorityPreference: '',
     ambitionPursuit: '',
-    decisionMaking: ''  // Inicializa esta propiedad
+    decisionMaking: ''
   });
-  
 
   useEffect(() => {
     anime({
@@ -193,9 +195,9 @@ const UserForm = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
-  
+
     if (e.target instanceof HTMLInputElement && type === 'checkbox') {
-      const checked = e.target.checked;  // Solo acceder a `checked` si es un checkbox
+      const checked = e.target.checked;
       setFormData((prevData) => ({
         ...prevData,
         [name]: checked ? [...prevData[name], value] : prevData[name].filter((item: string) => item !== value),
@@ -207,31 +209,27 @@ const UserForm = () => {
       });
     }
   };
-  
 
-
-  // Aquí debes agregar async para manejar el submit correctamente
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
-    // Validación básica
+
     if (!formData.firstName || !formData.lastName) {
       alert('Por favor, completa los campos de nombre y apellido.');
       return;
     }
-  
+
     const fullName = `${formData.firstName} ${formData.lastName}`.trim();
-  
+
     const dataToSend = {
       ...formData,
       name: fullName,
     };
-  
+
     console.log("Datos enviados:", dataToSend);
-  
-    // **Aquí guardamos los datos en localStorage**
+
+    // Guardar datos en localStorage
     localStorage.setItem('formData', JSON.stringify(dataToSend));
-  
+
     try {
       const response = await fetch('/api/saveresponse', {
         method: 'POST',
@@ -242,7 +240,7 @@ const UserForm = () => {
       });
       if (response.ok) {
         alert('¡Formulario enviado exitosamente!');
-        window.location.href = '/examples/all';
+        router.push('/examples/all');
       } else {
         alert('Error al enviar el formulario.');
       }

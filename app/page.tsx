@@ -6,7 +6,7 @@ const Home = () => {
     const router = useRouter();
 
     useEffect(() => {
-        const responses = localStorage.getItem('responses'); // Verifica si hay respuestas guardadas
+        const responses = localStorage.getItem('formData'); // Asegúrate de que aquí el nombre coincida con el nombre en que guardas los datos
         if (responses) {
             router.push('/examples/all'); // Redirige al chat si hay respuestas
         } else {
@@ -18,4 +18,5 @@ const Home = () => {
 };
 
 export default Home;
+
 

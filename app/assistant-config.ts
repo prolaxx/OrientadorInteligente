@@ -1,5 +1,5 @@
-export let assistantId = ""; // set your assistant ID here
+export let assistantId: string = ""; // set your assistant ID here
 
 if (assistantId === "") {
-  assistantId = process.env.OPENAI_ASSISTANT_ID;
+    assistantId = process.env.NEXT_PUBLIC_OPENAI_ASSISTANT_ID || ""; // Usa un valor vacío como valor por defecto
 }
