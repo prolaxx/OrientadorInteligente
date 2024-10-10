@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".", // Agregada esta línea para la base del proyecto
     "lib": [
       "dom",
       "dom.iterable",
