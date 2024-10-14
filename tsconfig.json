@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "baseUrl": ".", // Agregada esta línea para la base del proyecto
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "baseUrl": ".",
+    "paths": {
+      "@utils/*": ["app/utils/*"],
+      "@/*": ["./*"]
+    },
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -22,11 +22,6 @@
         "name": "next"
       }
     ],
-    "paths": {
-      "@/*": [
-        "./*"
-      ]
-    },
     "strictNullChecks": true
   },
   "include": [
@@ -35,7 +30,6 @@
     "**/*.ts",
     "**/*.tsx"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
+

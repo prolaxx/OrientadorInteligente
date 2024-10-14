@@ -1,4 +1,4 @@
-import { getOrCreateVectorStore } from '../../utils/vectorStoreUtils';
+import { getOrCreateVectorStore } from '@utils/vectorStoreUtils';
 import { NextResponse } from 'next/server';
 import { openai } from '@/app/openai';
 

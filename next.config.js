@@ -1,14 +1,13 @@
-// next.config.js
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
-const path = require('path');
-
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
   reactStrictMode: true,
-  webpack: (config) => {
-    config.resolve.alias['@'] = path.resolve(__dirname);
+  webpack: (config, options) => {
+    if (config.resolve.plugins) {
+      config.resolve.plugins.push(new TsconfigPathsPlugin());
+    } else {
+      config.resolve.plugins = [new TsconfigPathsPlugin()];
+    }
     return config;
   },
 };
-
-module.exports = nextConfig;

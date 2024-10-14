@@ -17,12 +17,17 @@ const FunctionCalling = () => {
   const [weatherData, setWeatherData] = useState<WeatherData>({});
   const isEmpty = Object.keys(weatherData).length === 0;
 
-  const functionCallHandler = async (call: RequiredActionFunctionToolCall) => {
-    if (call?.function?.name !== "get_weather") return;
-    const args = JSON.parse(call.function.arguments);
-    const data = getWeather(args.location);
-    setWeatherData(data);
-    return JSON.stringify(data);
+  const functionCallHandler = async (call: RequiredActionFunctionToolCall): Promise<string> => {
+    try {
+      if (call?.function?.name !== "get_weather") return "";
+      const args = JSON.parse(call.function.arguments);
+      const data = getWeather(args.location);
+      setWeatherData(data);
+      return JSON.stringify(data);
+    } catch (error) {
+      console.error("Error in functionCallHandler:", error);
+      return "";  // En caso de error, devolvemos una cadena vacía
+    }
   };
 
   return (
@@ -47,3 +52,4 @@ const FunctionCalling = () => {
 };
 
 export default FunctionCalling;
+

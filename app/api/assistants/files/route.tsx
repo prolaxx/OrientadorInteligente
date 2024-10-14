@@ -2,7 +2,7 @@
 
 import { assistantId } from '@/app/assistant-config';
 import { openai } from '@/app/openai';
-import { getOrCreateVectorStore } from '@/utils/vectorStoreUtils';
+import { getOrCreateVectorStore } from '../../../utils/vectorStoreUtils';
 
 // Subir archivo al vector store del asistente
 export async function POST(request) {

@@ -1,5 +1,19 @@
+import React from 'react';
 import { assistantId } from "@/app/assistant-config";
 import { openai } from "@/app/openai";
+
+// Componente FileViewer
+const FileViewer = () => {
+  return (
+    <div>
+      <h2>File Viewer</h2>
+      <p>Mostrando los archivos disponibles...</p>
+      {/* Agrega aquí la lógica de visualización de archivos */}
+    </div>
+  );
+};
+
+export default FileViewer;
 
 // upload file to assistant's vector store
 export async function POST(request) {
